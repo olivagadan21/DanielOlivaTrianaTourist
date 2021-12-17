@@ -1,13 +1,14 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.services;
 
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.CreateCategoryDto;
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.CreatePOIDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.category.CreateCategoryDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ListEntityNotFoundException;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Category;
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,8 +17,8 @@ public class CategoryService {
 
     private final CategoryRepository repositorio;
 
+    public List<Category> findAll() {
 
-    /* public List<Category> findAll() {
         List<Category> result = repositorio.findAll();
 
         if (result.isEmpty()) {
@@ -27,13 +28,10 @@ public class CategoryService {
         }
     }
 
-     */
 
-
-    /* public Category findById(Long id) {
+    public Category findById(Long id) {
         return repositorio.findById(id).orElseThrow(() -> new SingleEntityNotFoundException(id.toString(), Category.class));
     }
-     */
 
 
     public Category save(CreateCategoryDto categoryDto) {

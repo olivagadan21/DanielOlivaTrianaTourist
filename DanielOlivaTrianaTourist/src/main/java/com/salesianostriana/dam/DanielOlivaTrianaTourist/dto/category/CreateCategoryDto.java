@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.DanielOlivaTrianaTourist.dto;
+package com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

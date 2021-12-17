@@ -1,41 +1,40 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.controller;
 
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.CreateCategoryDto;
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.CreatePOIDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.category.CreateCategoryDto;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Category;
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.services.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/category/")
+@Validated
 public class CategoryController {
 
     private final CategoryService servicio;
 
-    /* @GetMapping("")
+    @GetMapping("")
     public List<Category> todos() {
         return servicio.findAll();
     }
 
-     */
 
-    /* @GetMapping("{id}")
-    public Category uno(@PathVariable Long id) {
+    @GetMapping("{id}")
+    public Category uno(@PathVariable @Min(value = 0, message = "No se pueden buscar categorias con un identificador negativo") Long id) {
         return servicio.findById(id);
     }
 
-     */
-
     @PutMapping("{id}")
-    public Optional<Category> editar(@RequestBody Category category, @PathVariable Long id){
+    public Optional<Category> editar(@Valid @RequestBody Category category, @PathVariable @Min(value = 0, message = "No se pueden editar categorias con un identificador negativo") Long id){
         return servicio.edit(category, id);
     }
 
@@ -45,7 +44,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("{id}")
-    public void borrarProducto(@PathVariable Long id) {
+    public void borrarProducto(@PathVariable @Min(value = 0, message = "No se pueden eliminar categorias con un identificador negativo") Long id) {
         servicio.deleteById(id);
     }
 

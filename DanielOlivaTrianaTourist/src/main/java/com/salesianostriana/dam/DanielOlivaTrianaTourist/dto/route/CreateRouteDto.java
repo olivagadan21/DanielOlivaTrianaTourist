@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.DanielOlivaTrianaTourist.dto;
+package com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.route;
 
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
 import lombok.AllArgsConstructor;

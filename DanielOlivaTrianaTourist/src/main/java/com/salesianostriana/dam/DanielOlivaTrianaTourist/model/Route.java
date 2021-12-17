@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.model;
 
+// import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones.UniqueNameRoute;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ public class Route {
     @Id @GeneratedValue
     private Long id;
 
+    // @UniqueNameRoute
     private String name;
 
     @ManyToMany

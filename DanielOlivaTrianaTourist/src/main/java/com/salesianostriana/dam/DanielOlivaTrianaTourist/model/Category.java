@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @NoArgsConstructor
@@ -16,6 +17,8 @@ public class Category {
     @Id @GeneratedValue
     private Long id;
 
+    @NotBlank
+    // @UniqueNameCategory
     private String name;
 
 }

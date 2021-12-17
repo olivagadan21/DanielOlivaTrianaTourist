@@ -1,6 +1,9 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.services;
 
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.CreatePOIDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.pOI.CreatePOIDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.pOI.POIDtoConverter;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ListEntityNotFoundException;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.POIRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +17,10 @@ import java.util.Optional;
 public class POIService {
 
     private final POIRepository repositorio;
+    private final POIDtoConverter converter;
 
 
-    /* public List<POI> findAll() {
+    public List<POI> findAll() {
         List<POI> result = repositorio.findAll();
 
         if (result.isEmpty()) {
@@ -26,26 +30,13 @@ public class POIService {
         }
     }
 
-     */
 
-
-    /* public POI findById(Long id) {
+    public POI findById(Long id) {
         return repositorio.findById(id).orElseThrow(() -> new SingleEntityNotFoundException(id.toString(), POI.class));
     }
-     */
-
 
     public POI save(CreatePOIDto poiDto) {
-        return repositorio.save(POI.builder()
-                .name(poiDto.getName())
-                .location(poiDto.getLocation())
-                .description(poiDto.getDescription())
-                .date(poiDto.getDate())
-                .category(poiDto.getCategory())
-                .coverPhoto(poiDto.getCoverPhoto())
-                .photo2(poiDto.getPhoto2())
-                .photo3(poiDto.getPhoto3())
-                .build());
+        return converter.createPOIDtoToPOI(poiDto);
     }
 
     public Optional<POI> edit(POI poi, Long id){
