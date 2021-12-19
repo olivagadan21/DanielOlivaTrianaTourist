@@ -1,5 +1,5 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.validadores;
-/*
+
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.CategoryRepository;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones.UniqueNameCategory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,10 @@ public class UniqueNameCategoryValidator implements ConstraintValidator<UniqueNa
 
     @Override
     public boolean isValid(String name, ConstraintValidatorContext context) {
-        return StringUtils.hasText(name) && !categoryRepository.existsByNombre(name);
-    }
+        if (categoryRepository.existsByName(name) || name == null) {
+            return false;
+        } else {
+            return true;
+        }    }
 
-}*/
+}

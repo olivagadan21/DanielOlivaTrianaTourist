@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.services;
 
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.category.CategoryDtoConverter;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.category.CreateCategoryDto;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ListEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class CategoryService {
 
     private final CategoryRepository repositorio;
+    private final CategoryDtoConverter categoryDtoConverter;
 
     public List<Category> findAll() {
 
@@ -35,9 +37,9 @@ public class CategoryService {
 
 
     public Category save(CreateCategoryDto categoryDto) {
-        return repositorio.save(Category.builder()
+        return Category.builder()
                 .name(categoryDto.getName())
-                .build());
+                .build();
     }
 
     public Optional<Category> edit(Category category, Long id){

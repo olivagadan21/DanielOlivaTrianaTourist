@@ -1,5 +1,5 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones;
-/*
+
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.validadores.UniqueNameRouteValidator;
 
 import javax.validation.Constraint;
@@ -19,6 +19,3 @@ public @interface UniqueNameRoute {
     Class<? extends Payload>[] payload() default {};
 
 }
-
-
- */

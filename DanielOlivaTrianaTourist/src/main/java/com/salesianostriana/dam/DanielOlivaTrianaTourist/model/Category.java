@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.model;
 
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones.UniqueNameCategory;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -14,11 +15,12 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class Category {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @NotBlank
-    // @UniqueNameCategory
+    @UniqueNameCategory
     private String name;
 
 }

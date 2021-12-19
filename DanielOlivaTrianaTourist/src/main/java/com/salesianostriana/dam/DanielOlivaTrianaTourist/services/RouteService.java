@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.services;
 
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.route.CreateRouteDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.route.RouteDtoConverter;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ListEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Route;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class RouteService {
 
     private final RouteRepository repositorio;
-
+    private final RouteDtoConverter routeDtoConverter;
 
     public List<Route> findAll() {
         List<Route> result = repositorio.findAll();
@@ -34,9 +35,7 @@ public class RouteService {
     }
 
     public Route save(CreateRouteDto routeDto) {
-        return repositorio.save(Route.builder()
-                .name(routeDto.getName())
-                .build());
+        return routeDtoConverter.createRouteDtoToRoute(routeDto);
     }
 
     public Optional<Route> edit(Route route, Long id){
