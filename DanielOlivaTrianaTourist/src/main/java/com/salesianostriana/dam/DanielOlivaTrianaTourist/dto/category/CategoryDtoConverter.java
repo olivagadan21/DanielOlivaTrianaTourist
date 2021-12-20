@@ -10,6 +10,7 @@ public class CategoryDtoConverter {
     public Category createCategoryDtoToCategory (CreateCategoryDto createCategoryDto) {
 
         return Category.builder()
+                .id(createCategoryDto.getId())
                 .name(createCategoryDto.getName())
                 .build();
 

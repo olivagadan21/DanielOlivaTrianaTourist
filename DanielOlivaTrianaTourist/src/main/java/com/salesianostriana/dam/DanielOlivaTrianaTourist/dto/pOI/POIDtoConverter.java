@@ -13,6 +13,7 @@ public class POIDtoConverter {
     public POI createPOIDtoToPOI (CreatePOIDto p) {
 
         return POI.builder()
+                .id(p.getId())
                 .name(p.getName())
                 .location(p.getLocation())
                 .description(p.getDescription())

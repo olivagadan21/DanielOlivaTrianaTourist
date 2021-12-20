@@ -9,13 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UniquePOIValidator implements ConstraintValidator<UniquePOI, POI> {
+public class UniquePOIValidator implements ConstraintValidator<UniquePOI, Long> {
 
     @Autowired
     private Route route;
-
-    @Autowired
-    private RouteService routeService;
 
     @Override
     public void initialize(UniquePOI constraintAnnotation) {
@@ -23,24 +20,13 @@ public class UniquePOIValidator implements ConstraintValidator<UniquePOI, POI> {
     }
 
     @Override
-    public boolean isValid(POI poi, ConstraintValidatorContext constraintValidatorContext) {
-        if (poi != null) {
+    public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
 
-            for ( Route r : routeService.findAll() ) {
+        if (id != null) {
 
-                for ( POI p : r.getSteps() ) {
+            for (POI p : route.getSteps()) {
 
-                    if (p.equals(poi)){
-
-                        return false;
-
-                    } else {
-
-                        return true;
-
-                    }
-
-                }
+                return !p.getId().equals(id);
 
             }
 

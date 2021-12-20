@@ -4,12 +4,14 @@ import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Category;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.CategoryRepository;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones.ExistingCategory;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones.UniqueURL;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class ExistingCategoryValidator implements ConstraintValidator<ExistingCategory, Long> {
 
+    @Autowired
     CategoryRepository categoryRepository;
 
     @Override
@@ -19,15 +21,7 @@ public class ExistingCategoryValidator implements ConstraintValidator<ExistingCa
     @Override
     public boolean isValid(Long categoria, ConstraintValidatorContext context) {
 
-        for (Category c : categoryRepository.findAll() ) {
-            if (c.getId() == categoria) {
-                return true;
-            } else{
-                return false;
-            }
-        }
-
-        return false;
+        return categoryRepository.existsById(categoria) && categoria!=null;
 
     }
 }

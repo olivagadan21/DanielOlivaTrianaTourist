@@ -18,10 +18,7 @@ public class UniqueNameCategoryValidator implements ConstraintValidator<UniqueNa
 
     @Override
     public boolean isValid(String name, ConstraintValidatorContext context) {
-        if (categoryRepository.existsByName(name) || name == null) {
-            return false;
-        } else {
-            return true;
-        }    }
+        return !categoryRepository.existsByName(name) && name != null;
+    }
 
 }

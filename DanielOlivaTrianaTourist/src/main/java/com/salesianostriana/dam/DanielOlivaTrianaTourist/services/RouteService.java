@@ -2,13 +2,18 @@ package com.salesianostriana.dam.DanielOlivaTrianaTourist.services;
 
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.route.CreateRouteDto;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.route.RouteDtoConverter;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ExistingPOIRoute;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ListEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Route;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.POIRepository;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.RouteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +21,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RouteService {
 
+    private final POIRepository poiRepository;
     private final RouteRepository repositorio;
     private final RouteDtoConverter routeDtoConverter;
 
@@ -35,7 +41,9 @@ public class RouteService {
     }
 
     public Route save(CreateRouteDto routeDto) {
-        return routeDtoConverter.createRouteDtoToRoute(routeDto);
+        Route route = routeDtoConverter.createRouteDtoToRoute(routeDto);
+        repositorio.save(route);
+        return route;
     }
 
     public Optional<Route> edit(Route route, Long id){
@@ -47,6 +55,30 @@ public class RouteService {
 
     public void deleteById(Long id){
         repositorio.deleteById(id);
+    }
+
+    public Route addPoiToRoute (Long id1, Long id2) {
+        if (poiRepository.findById(id2).isEmpty()){
+            throw new ExistingPOIRoute(POI.class);
+        }
+
+        repositorio.getById(id1).getSteps().forEach(
+                poi -> {
+                    if (poi.getId().equals(id2)){
+                        throw new ExistingPOIRoute(POI.class);
+                    }
+                }
+        );
+        repositorio.getById(id1).addPoi(poiRepository.getById(id2));
+        return repositorio.save(repositorio.getById(id1));
+
+
+    }
+
+    public void removePoiToRoute (Long id1, Long id2) {
+
+        repositorio.getById(id1).removePoi(poiRepository.getById(id2));
+
     }
 
 }

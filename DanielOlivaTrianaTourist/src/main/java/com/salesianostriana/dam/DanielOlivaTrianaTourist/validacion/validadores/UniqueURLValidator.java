@@ -29,12 +29,26 @@ public class UniqueURLValidator implements ConstraintValidator<UniqueURL, Object
         String photo2 = (String) PropertyAccessorFactory.forBeanPropertyAccess(value).getPropertyValue(url2);
         String photo3 = (String) PropertyAccessorFactory.forBeanPropertyAccess(value).getPropertyValue(url3);
 
-        if ((photo2 == null || photo2 == null) || (photo2 == null && photo2 ==null)) {
+        if (photo2 == null && photo3 ==null) {
+
             return true;
+
         } else {
 
-            if (coverPhoto!=photo2 && coverPhoto != photo3 && photo2!=photo3){
+            if (photo2 == null) {
+                return !coverPhoto.equals(photo3);
+            }
+
+            if (photo3 == null) {
+                return !coverPhoto.equals(photo2);
+            }
+
+            if (!coverPhoto.equals(photo2) && !coverPhoto.equals(photo3) && !photo2.equals(photo3)){
                 return true;
+            }
+
+            if (coverPhoto.equals(photo2) && coverPhoto.equals(photo3) && photo2.equals(photo3)) {
+                return false;
             }
 
             return false;

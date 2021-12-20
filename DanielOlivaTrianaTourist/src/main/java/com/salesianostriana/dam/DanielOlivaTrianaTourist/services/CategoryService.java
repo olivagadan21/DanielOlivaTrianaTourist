@@ -37,9 +37,9 @@ public class CategoryService {
 
 
     public Category save(CreateCategoryDto categoryDto) {
-        return Category.builder()
-                .name(categoryDto.getName())
-                .build();
+        Category category = categoryDtoConverter.createCategoryDtoToCategory(categoryDto);
+        repositorio.save(category);
+        return category;
     }
 
     public Optional<Category> edit(Category category, Long id){

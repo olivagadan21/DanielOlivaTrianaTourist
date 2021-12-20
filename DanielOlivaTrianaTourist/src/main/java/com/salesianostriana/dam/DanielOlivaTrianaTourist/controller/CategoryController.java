@@ -1,8 +1,12 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.controller;
 
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.category.CreateCategoryDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Category;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Route;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.services.CategoryService;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.services.POIService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +25,7 @@ import java.util.Optional;
 public class CategoryController {
 
     private final CategoryService servicio;
+    private final POIService poiService;
 
     @GetMapping("")
     public List<Category> todos() {
@@ -45,7 +50,24 @@ public class CategoryController {
 
     @DeleteMapping("{id}")
     public void borrarProducto(@PathVariable @Min(value = 0, message = "No se pueden eliminar categorias con un identificador negativo") Long id) {
-        servicio.deleteById(id);
+
+        if (servicio.findById(id) != null){
+
+            for ( POI poi: poiService.findAll() ) {
+                if (poi.getCategory().getId()==id) {
+                    poiService.findById(poi.getId()).setCategory(null);
+                }
+            }
+
+            servicio.deleteById(id);
+
+        } else {
+
+            throw new SingleEntityNotFoundException(id.toString(), Category.class);
+
+        }
+
+
     }
 
 }

@@ -22,11 +22,9 @@ public class Route {
     @Id @GeneratedValue
     private Long id;
 
-    @UniqueNameRoute
     private String name;
 
     @ManyToMany
-    @UniquePOI
     private List<POI> steps = new ArrayList<>();
 
     public void addPoi(@Valid POI poi) {

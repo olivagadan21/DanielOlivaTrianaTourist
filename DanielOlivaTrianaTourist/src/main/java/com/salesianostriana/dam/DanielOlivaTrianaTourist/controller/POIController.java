@@ -1,7 +1,9 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.controller;
 
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.pOI.CreatePOIDto;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Route;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.services.POIService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,7 +46,17 @@ public class POIController {
 
     @DeleteMapping("{id}")
     public void borrarProducto(@PathVariable @Min(value = 0, message = "No se pueden eliminar POI con un identificador negativo") Long id) {
-        servicio.deleteById(id);
+
+        if (servicio.findById(id) != null) {
+
+            servicio.deleteById(id);
+
+        } else {
+
+            throw new SingleEntityNotFoundException(id.toString(), Route.class);
+
+        }
+
     }
 
 }

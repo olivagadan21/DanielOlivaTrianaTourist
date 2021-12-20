@@ -17,7 +17,7 @@ import java.util.Optional;
 public class POIService {
 
     private final POIRepository repositorio;
-    private final POIDtoConverter converter;
+    private final POIDtoConverter poiDtoConverter;
 
 
     public List<POI> findAll() {
@@ -36,7 +36,9 @@ public class POIService {
     }
 
     public POI save(CreatePOIDto poiDto) {
-        return converter.createPOIDtoToPOI(poiDto);
+        POI poi = poiDtoConverter.createPOIDtoToPOI(poiDto);
+        repositorio.save(poi);
+        return poi;
     }
 
     public Optional<POI> edit(POI poi, Long id){

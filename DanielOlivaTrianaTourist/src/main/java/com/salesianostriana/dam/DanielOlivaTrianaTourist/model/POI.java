@@ -19,7 +19,7 @@ public class POI {
     @Id @GeneratedValue
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "{not.blank}")
     private String name;
 
     // @FormatLocation
@@ -32,11 +32,8 @@ public class POI {
 
     @ManyToOne
     @JoinColumn(name = "category")
-    @ExistingCategory()
     private Category category;
 
-    @URL
-    @NotBlank
     private String coverPhoto;
 
     private String photo2;
