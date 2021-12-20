@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "cd77223d-5cb7-47f2-ad83-ff2965e6e0dd",
+		"name": "TrianaTourist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Parroquia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/category/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/category/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Iglesia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/category/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/category/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/category/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POI",
+			"item": [
+				{
+					"name": "POIs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/POI/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"POI",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/POI/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"POI",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POI",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Real Parroquia de Señora Santa Ana\",\r\n    \"location\" : \"37.382827,-6.0027318\",\r\n    \"description\" : \"La Real Parroquia de Santa Ana de Sevilla, es una iglesia parroquial de estilo gótico-mudéjar, declarada Bien de Interés Cultural, cuya construcción se inició a finales del siglo XIII. Se encuentra situada en el barrio de Triana. Es conocida popularmente como la Catedral de Triana\",\r\n    \"date\" : \"1931-06-03\",\r\n    \"category\" : 1,\r\n    \"coverPhoto\" : \"https://www.archisevillasiempreadelante.org/wp-content/uploads/2019/03/altar-santa-ana.jpg\",\r\n    \"photo2\" : null,\r\n    \"photo3\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/POI/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"POI",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POI",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Real Parroquia de Señora Santa Ana\",\r\n    \"location\" : \"37.382827,-6.0027318\",\r\n    \"description\" : \"La Real Parroquia de Santa Ana de Sevilla, es una iglesia parroquial de estilo gótico-mudéjar, declarada Bien de Interés Cultural, cuya construcción se inició a finales del siglo XIII. Se encuentra situada en el barrio de Triana. Es conocida popularmente como la Catedral de Triana\",\r\n    \"date\" : \"1931-06-03\",\r\n    \"category\" : 1,\r\n    \"coverPhoto\" : \"https://www.archisevillasiempreadelante.org/wp-content/uploads/2019/03/altar-santa-ana.jpg\",\r\n    \"photo2\" : \"https://www.archisevilla.org/wp-content/uploads/2015/12/Santa-Ana-retablo-731x1024.jpg\",\r\n    \"photo3\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/POI/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"POI",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POI",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/POI/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"POI",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Route",
+			"item": [
+				{
+					"name": "Routes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Ruta parroquial\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/route/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Ruta eclesiástica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/route/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POIRoute",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/3/POI/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"3",
+								"POI",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POIRoute",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/3/POI/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"3",
+								"POI",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

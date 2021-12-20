@@ -5,7 +5,9 @@ import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.category.CreateCate
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ListEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Category;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.CategoryRepository;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.POIRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ public class CategoryService {
 
     private final CategoryRepository repositorio;
     private final CategoryDtoConverter categoryDtoConverter;
+    private final POIRepository poiRepository;
 
     public List<Category> findAll() {
 
@@ -50,7 +53,25 @@ public class CategoryService {
     }
 
     public void deleteById(Long id){
-        repositorio.deleteById(id);
-    }
+        Optional<Category> category = repositorio.findById(id);
+
+        if (repositorio.findById(id) != null){
+
+            List<POI> poi = poiRepository.AllCategoriesOfOnePOI(id);
+
+            poi.forEach(
+                    p -> {
+                        p.setCategory(null);
+                        poiRepository.save(p);
+                    }
+            );
+
+            repositorio.deleteById(id);
+
+        } else {
+
+            throw new SingleEntityNotFoundException(id.toString(), Category.class);
+
+        }    }
 
 }

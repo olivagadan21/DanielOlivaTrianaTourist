@@ -1,6 +1,5 @@
 package com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.pOI;
 
-import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones.ExistingCategory;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.validacion.anotaciones.UniqueURL;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +27,6 @@ public class CreatePOIDto {
 
     private LocalDate date;
 
-    @ExistingCategory(message = "{existing.category}")
     private Long category;
 
     @URL(message = "{url}")
