@@ -50,11 +50,7 @@ public class RouteController {
 
     @DeleteMapping("{id}")
     public void borrarRoute(@PathVariable @Min(value = 0, message = "No se pueden eliminar rutas con un identificador negativo") Long id) {
-        if (servicio.findById(id) != null){
-            servicio.deleteById(id);
-        } else {
-            throw new SingleEntityNotFoundException(id.toString(), Route.class);
-        }
+        servicio.deleteById(id);
     }
 
     @PostMapping("{id1}/POI/{id2}")

@@ -54,7 +54,11 @@ public class RouteService {
     }
 
     public void deleteById(Long id){
-        repositorio.deleteById(id);
+        if (repositorio.findById(id) != null){
+            repositorio.deleteById(id);
+        } else {
+            throw new SingleEntityNotFoundException(id.toString(), Route.class);
+        }
     }
 
     public Route addPoiToRoute (Long id1, Long id2) {

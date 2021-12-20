@@ -47,15 +47,7 @@ public class POIController {
     @DeleteMapping("{id}")
     public void borrarProducto(@PathVariable @Min(value = 0, message = "No se pueden eliminar POI con un identificador negativo") Long id) {
 
-        if (servicio.findById(id) != null) {
-
-            servicio.deleteById(id);
-
-        } else {
-
-            throw new SingleEntityNotFoundException(id.toString(), Route.class);
-
-        }
+        servicio.deleteById(id);
 
     }
 

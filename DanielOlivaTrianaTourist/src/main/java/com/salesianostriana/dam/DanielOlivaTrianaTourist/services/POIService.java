@@ -5,6 +5,7 @@ import com.salesianostriana.dam.DanielOlivaTrianaTourist.dto.pOI.POIDtoConverter
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.ListEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.POI;
+import com.salesianostriana.dam.DanielOlivaTrianaTourist.model.Route;
 import com.salesianostriana.dam.DanielOlivaTrianaTourist.repos.POIRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,10 @@ public class POIService {
     }
 
     public Optional<POI> edit(POI poi, Long id){
+
+        if (repositorio.findById(id).isEmpty()) {
+            throw new ListEntityNotFoundException(POI.class);
+        }
         return repositorio.findById(id).map(p -> {
             p.setName(poi.getName());
             p.setLocation(poi.getLocation());
@@ -56,7 +61,15 @@ public class POIService {
     }
 
     public void deleteById(Long id){
-        repositorio.deleteById(id);
-    }
+
+        if (repositorio.findById(id) != null) {
+
+            repositorio.deleteById(id);
+
+        } else {
+
+            throw new SingleEntityNotFoundException(id.toString(), POI.class);
+
+        }    }
 
 }
